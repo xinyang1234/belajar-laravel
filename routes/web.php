@@ -31,5 +31,5 @@ use Illuminate\Support\Facades\Route;
 //     return "hh";
 // });
 
-route::get('home', [HomeController::class, 'index']);
+route::get('/', [HomeController::class, 'index']);
 
