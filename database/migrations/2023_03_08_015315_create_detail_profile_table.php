@@ -9,6 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+
+    //sintaks dibawah ini adalah gambaran table pada database yang sudah kita buat
+    //di localhost table ini akan berjalan setelah di lakukannya perintah di terminal "php artisan migrate"
     public function up(): void
     {
         Schema::create('detail_profile', function (Blueprint $table) {

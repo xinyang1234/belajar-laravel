@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
+//di sintaks ini kita bisa melakukan insert, delete data di table database yang sudah kita buat dengan perintah "php artisan db:seed"
 class DetailProfileSeeder extends Seeder
 {
     /**
@@ -17,8 +19,8 @@ class DetailProfileSeeder extends Seeder
             [
                 'address' => 'Jember',
                 'nomor_telepon' => '08XXXXXX',
-                'ttl' => '1999-01-01',
-                'foto' => 'foto.jpg'
+                'ttl' => '2004-10-08',
+                'foto' => 'picture.png'
             ]
             );
         //

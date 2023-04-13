@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,22 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-//  Route::get('/hi',  function() {
-//     return 'Hello World';
-//  });
-
-// Route::group(['namespace' => 'Frontend'], function() 
-// {
-//     Route::resource('home', 'HomeController');
-// });
-
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get("/home", function() {
-//     return "hh";
-// });
-
+//route digunakan untuk menembak controller di route kita bisa menentukan
+//tag yang di tampilkan setelah domain web nya misal (youtube.com/dashboard)
 route::get('/', [HomeController::class, 'index']);
+route::get('dashboard', [DashboardController::class, 'index']);
 
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('register', [RegisterController::class, 'index'])->name('index');
+    Route::post('register', [RegisterController::class, 'validator'])->name('index');
+    route::get('/login', [LoginController::class, 'index']);
+    route::post('/login', [LoginController::class, 'login'])->name('index');
+});
+// Auth::routes();
+// Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

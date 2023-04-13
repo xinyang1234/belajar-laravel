@@ -17,8 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+    //difile atau di sintaks ini kita bisa menentukan data mana yang mau di tidak diketahui di database
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
