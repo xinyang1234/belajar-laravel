@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,15 +56,15 @@ class RegisterController extends Controller
      */
 
     // sintaks dibawah digunakan untuk validasi data yang di inputkan
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'username' => ['required', 'string', 'max:255', 'unique:users'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -72,13 +74,23 @@ class RegisterController extends Controller
      */
 
     //  sintaks dibawah digunakan untuk menyimpan data yang sudah di validasi
-    protected function create(array $data)
+    public function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('login')->with('success', 'Register Berhasil');
     }
 }
+
+
+
+// return User::create([
+        //     'name' => $data['name'],
+        //     'username' => $data['username'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);

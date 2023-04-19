@@ -8,9 +8,18 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url ('login') }}">
+                    @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
+                      </div>
+                    @endif 
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('username') }}</label>
 
